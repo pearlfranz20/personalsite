@@ -207,10 +207,10 @@ h2 { font-size: var(--step-3); letter-spacing: -0.02em; margin-bottom: 2rem; max
 .plate:has(h4 a:focus-visible) { outline: 2px solid var(--ember); outline-offset: 4px; }
 .plate-body p:not(.caption) { color: color-mix(in srgb, var(--ink) 88%, var(--bg)); }
 .feature { grid-column: 1 / -1; flex-direction: row; }
-.feature .thumb { width: 46%; aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid var(--rule); flex: none; }
+.feature .thumb { width: 46%; aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid var(--rule); flex: none; contain: size; }
 .feature h4 { font-size: var(--step-3); }
 .plates > .plate:last-child:nth-child(odd):not(.feature) { grid-column: 1 / -1; flex-direction: row; }
-.plates > .plate:last-child:nth-child(odd):not(.feature) .thumb { width: 46%; aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid var(--rule); flex: none; }
+.plates > .plate:last-child:nth-child(odd):not(.feature) .thumb { width: 46%; aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid var(--rule); flex: none; contain: size; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: auto 0 0; padding: 0.5rem 0 0; }
 .tags li { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); }
 
@@ -263,7 +263,7 @@ h2 { font-size: var(--step-3); letter-spacing: -0.02em; margin-bottom: 2rem; max
   .about-grid { grid-template-columns: 1fr; }
   .plates { grid-template-columns: 1fr; }
   .feature, .plates > .plate:last-child:nth-child(odd):not(.feature) { flex-direction: column; }
-  .feature .thumb, .plates > .plate:last-child:nth-child(odd):not(.feature) .thumb { width: 100%; aspect-ratio: 16 / 9; min-height: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .feature .thumb, .plates > .plate:last-child:nth-child(odd):not(.feature) .thumb { contain: none; width: 100%; aspect-ratio: 16 / 9; min-height: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
   .feature h4 { font-size: var(--step-2); }
   .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; }
   .edu { grid-template-columns: 1fr; }

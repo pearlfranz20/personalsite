@@ -431,6 +431,54 @@
       ctx.strokeStyle = `rgba(${C.warm},0.9)`; ctx.strokeRect(ax, ay, w * 0.12, h * 0.3);
       for (let l = 0; l < 5; l++) { ctx.fillStyle = `rgba(${C.warm},0.6)`; ctx.fillRect(ax + 6, ay + 10 + l * 9, w * 0.12 - 12 - (l === 4 ? 14 : 0), 2); }
     },
+    capacity(ctx, w, h, t, C) {
+      // Two classes of point-cloud manifolds and a line that separates them.
+      // The brighter dot on each cloud is the point closest to the line.
+      const r = rng(53), cx = w / 2, cy = h / 2, sx = w * 0.4, sy = h * 0.38;
+      const rot = 0.55 + t * 0.00012;
+      const nx = Math.cos(rot), ny = Math.sin(rot);
+      const px = (d, u) => cx + (d * nx - u * ny) * sx;
+      const py = (d, u) => cy + (d * ny + u * nx) * sy;
+      const clamp = (v) => Math.max(-2.2, Math.min(2.2, v));
+      const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+      ctx.strokeStyle = `rgba(${C.cool},0.5)`; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+      ctx.beginPath(); ctx.moveTo(px(0, -3), py(0, -3)); ctx.lineTo(px(0, 3), py(0, 3)); ctx.stroke(); ctx.setLineDash([]);
+      for (let k = 0; k < 6; k++) {
+        const side = k % 2 ? 1 : -1, col = side > 0 ? C.warm : C.cool;
+        const d0 = side * (0.34 + r() * 0.3), u0 = (Math.floor(k / 2) - 1) * 0.46 + (r() - 0.5) * 0.14;
+        const phi = r() * 3.14, s1 = 0.07 + r() * 0.03, s2 = s1 * (0.4 + r() * 0.3);
+        const breathe = 1 + 0.18 * Math.sin(t * 0.002 + k * 1.3);
+        const pts = [];
+        let anchor = 0, best = 9;
+        for (let i = 0; i < 14; i++) {
+          const a = clamp(gauss(r)) * s1 * breathe, b = clamp(gauss(r)) * s2 * breathe;
+          const d = d0 + a * Math.cos(phi) - b * Math.sin(phi), u = u0 + a * Math.sin(phi) + b * Math.cos(phi);
+          if (Math.abs(d) < best) { best = Math.abs(d); anchor = i; }
+          pts.push([px(d, u), py(d, u)]);
+        }
+        const sorted = pts.slice().sort((p, q) => p[0] - q[0] || p[1] - q[1]);
+        const lower = [], upper = [];
+        for (const p of sorted) {
+          while (lower.length > 1 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) lower.pop();
+          lower.push(p);
+        }
+        for (let i = sorted.length - 1; i >= 0; i--) {
+          const p = sorted[i];
+          while (upper.length > 1 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) upper.pop();
+          upper.push(p);
+        }
+        const hull = lower.slice(0, -1).concat(upper.slice(0, -1));
+        ctx.beginPath();
+        hull.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${col},0.07)`; ctx.fill();
+        ctx.strokeStyle = `rgba(${col},0.35)`; ctx.lineWidth = 1; ctx.stroke();
+        pts.forEach((p, i) => {
+          ctx.fillStyle = `rgba(${col},${i === anchor ? 1 : 0.7})`;
+          ctx.beginPath(); ctx.arc(p[0], p[1], i === anchor ? 2.6 : 1.5, 0, 6.29); ctx.fill();
+        });
+      }
+    },
     glyphs(ctx, w, h, t, C) {
       const off = document.createElement("canvas"); off.width = 28; off.height = 12;
       const o = off.getContext("2d"); o.fillStyle = "#fff"; o.font = "bold 11px sans-serif"; o.textBaseline = "middle"; o.fillText("STOP", 1, 6.5);

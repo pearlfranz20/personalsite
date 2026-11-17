@@ -70,11 +70,11 @@
       <div class="wrap">
         <div class="reveal">
           <p class="caption section-mark">Projects</p>
-          <h2 id="projects-h">Nine pieces of work, shown with their limits.</h2>
+          <h2 id="projects-h">Ten pieces of work, shown with their limits.</h2>
           <p class="section-intro">Everything here is public on GitHub. Each write-up lists its methods, limits and results, good or bad. The small drawings are generated, not data.</p>
         </div>
 
-        <h3 class="group-h reveal">Neural data</h3>
+        <h3 class="group-h reveal">Neural data and theory</h3>
         <ul class="plates">
           <li class="plate feature reveal">
             <canvas class="thumb" data-thumb="raster" aria-hidden="true"></canvas>
@@ -113,6 +113,17 @@
               <ul class="tags" aria-label="Tools"><li>PyTorch</li><li>EEG</li><li>Claude API</li></ul>
             </div>
           </li>
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="capacity" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 5 / Theory reproduction, simulated manifolds</p>
+              <h4><a href="https://github.com/pearlfranz20/manifold-capacity">manifold-capacity</a></h4>
+              <p>A from-scratch reproduction of Chung, Lee and Sompolinsky (2018), <cite>Classification and Geometry of General Perceptual Manifolds</cite>, in NumPy, SciPy and cvxpy. Manifold capacity is how many object manifolds per neuron a linear readout can still separate. Simulated capacity came out at 1.92 to 2.03 for single points against Cover's 2. Spheres were 3.7% off the formula on average and 12% at worst. Point clouds were 3.2% off the estimator on average and 4.8% at worst.</p>
+              <p>It also has three small extensions. A non-negative least squares version of the estimator gives the same answers as a generic cvxpy solve, 48 to 154 times faster per sample. With strongly correlated manifold centers the plain estimator overestimates (0.63 against 0.32 simulated), and removing the shared directions first gives 0.29. In a toy trained network with three hidden layers, estimated capacity rises from 0.23 at the input to 0.68 at the last hidden layer.</p>
+              <p>It uses simulated manifolds, not neural recordings, at zero margin only and with 200 neurons at most. The network result comes from the estimator alone, and the network was tested on the same 30 objects it was trained on, so it checks the pipeline, not generalization. Applying it to Allen Brain Observatory Neuropixels data is the planned next step and hasn't been done.</p>
+              <ul class="tags" aria-label="Tools"><li>NumPy</li><li>SciPy</li><li>cvxpy</li><li>Simulation</li></ul>
+            </div>
+          </li>
         </ul>
 
         <h3 class="group-h reveal">Research tooling</h3>
@@ -120,7 +131,7 @@
           <li class="plate reveal">
             <canvas class="thumb" data-thumb="panels" aria-hidden="true"></canvas>
             <div class="plate-body">
-              <p class="caption">Pl. 5 / Image forensics</p>
+              <p class="caption">Pl. 6 / Image forensics</p>
               <h4><a href="https://github.com/pearlfranz20/dupscope">dupscope</a></h4>
               <p>Splits figures into panels and flags images that appear twice, even rotated, mirrored, cropped or re-toned, then writes a report for a person to check. On 200 held-out synthetic papers it found 58 of 80 planted reuses and wrongly flagged 1 of 99 clean papers.</p>
               <ul class="tags" aria-label="Tools"><li>OpenCV</li><li>SIFT</li><li>Benchmarking</li></ul>
@@ -129,7 +140,7 @@
           <li class="plate reveal">
             <canvas class="thumb" data-thumb="lake" aria-hidden="true"></canvas>
             <div class="plate-body">
-              <p class="caption">Pl. 6 / Neuroimaging metadata</p>
+              <p class="caption">Pl. 7 / Neuroimaging metadata</p>
               <h4><a href="https://github.com/pearlfranz20/neurolake">neurolake</a></h4>
               <p>Pulls BIDS datasets from OpenNeuro, lands the metadata as Parquet and models it with dbt on DuckDB. An audit of 150 random OpenNeuro datasets found that 51% pass every rule and 19% have no participants file.</p>
               <ul class="tags" aria-label="Tools"><li>dbt</li><li>DuckDB</li><li>Parquet</li><li>BIDS</li></ul>
@@ -138,7 +149,7 @@
           <li class="plate reveal">
             <canvas class="thumb" data-thumb="tracts" aria-hidden="true"></canvas>
             <div class="plate-body">
-              <p class="caption">Pl. 7 / Diffusion MRI, in progress</p>
+              <p class="caption">Pl. 8 / Diffusion MRI, in progress</p>
               <h4><a href="https://github.com/pearlfranz20/dmriwebsite">dmriwebsite</a></h4>
               <p>A SvelteKit site describing tractography, connectometry and longitudinal diffusion MRI analyses, with an inquiry form.</p>
               <ul class="tags" aria-label="Tools"><li>SvelteKit</li><li>TypeScript</li></ul>
@@ -151,7 +162,7 @@
           <li class="plate reveal">
             <canvas class="thumb" data-thumb="pages" aria-hidden="true"></canvas>
             <div class="plate-body">
-              <p class="caption">Pl. 8 / Retrieval over PDFs</p>
+              <p class="caption">Pl. 9 / Retrieval over PDFs</p>
               <h4><a href="https://github.com/pearlfranz20/ragpdfquery">ragpdfquery</a></h4>
               <p>A production-shaped retrieval system with citations, multilingual support and hallucination checks. A LangGraph agent retrieves, grades, generates and retries with more context when an answer isn't grounded. Runs on Bedrock or OpenAI, with an admin dashboard for ingestion and evaluation runs.</p>
               <ul class="tags" aria-label="Tools"><li>LangGraph</li><li>pgvector</li><li>FastAPI</li><li>DeepEval</li></ul>
@@ -160,7 +171,7 @@
           <li class="plate reveal">
             <canvas class="thumb" data-thumb="glyphs" aria-hidden="true"></canvas>
             <div class="plate-body">
-              <p class="caption">Pl. 9 / Vision in bad light</p>
+              <p class="caption">Pl. 10 / Vision in bad light</p>
               <h4><a href="https://github.com/pearlfranz20/lowlightlowresocr">lowlightlowresocr</a></h4>
               <p>A fast, coarse pathway and a slow, detailed one, fused by a learned gate, for signs and text in bad light. On a task built so neither pathway can solve it alone, the fused model reaches 79.6% against about 51% for either pathway. On other benchmarks the gate mostly leaned on one pathway, which the README reports plainly.</p>
               <ul class="tags" aria-label="Tools"><li>PyTorch</li><li>GTSRB</li><li>OCR</li></ul>
