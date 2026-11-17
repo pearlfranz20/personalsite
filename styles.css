@@ -206,6 +206,7 @@ h2 { font-size: var(--step-3); letter-spacing: -0.02em; margin-bottom: 2rem; max
 .plate h4 a:focus-visible { outline: none; }
 .plate:has(h4 a:focus-visible) { outline: 2px solid var(--ember); outline-offset: 4px; }
 .plate-body p:not(.caption) { color: color-mix(in srgb, var(--ink) 88%, var(--bg)); }
+.plate-body p a { position: relative; z-index: 2; }
 .feature { grid-column: 1 / -1; flex-direction: row; }
 .feature .thumb { width: 46%; aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid var(--rule); flex: none; contain: size; }
 .feature h4 { font-size: var(--step-3); }

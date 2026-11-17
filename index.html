@@ -90,7 +90,7 @@
             <canvas class="thumb" data-thumb="manifold" aria-hidden="true"></canvas>
             <div class="plate-body">
               <p class="caption">Pl. 2 / Latent dynamics, in progress</p>
-              <h4><a href="https://github.com/pearlfranz20/neural">sparsedyn</a></h4>
+              <h4><a href="https://github.com/pearlfranz20/sparsedyn">sparsedyn</a></h4>
               <p>How many neurons do you need, and how coarse can your bins be, before latent dynamics stop being recoverable? This project treats that as an observability problem with ground truth. So far the Fisher-information prediction matches an oracle smoother within 0.013 R&sup2; at fine bins, and a learned Poisson LDS reaches the oracle with 12 to 96 neurons. Nonlinear and real-data phases are next.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>State-space models</li><li>Simulation</li></ul>
             </div>
@@ -149,10 +149,11 @@
           <li class="plate reveal">
             <canvas class="thumb" data-thumb="tracts" aria-hidden="true"></canvas>
             <div class="plate-body">
-              <p class="caption">Pl. 8 / Diffusion MRI, in progress</p>
-              <h4><a href="https://github.com/pearlfranz20/dmriwebsite">dmriwebsite</a></h4>
-              <p>A SvelteKit site describing tractography, connectometry and longitudinal diffusion MRI analyses, with an inquiry form.</p>
-              <ul class="tags" aria-label="Tools"><li>SvelteKit</li><li>TypeScript</li></ul>
+              <p class="caption">Pl. 8 / Interactive MRI explainer</p>
+              <h4><a href="https://dmriwebsite.vercel.app/">Scan to Result</a></h4>
+              <p>An interactive explainer of how a brain MRI becomes a number you can trust. Three walkthroughs cover diffusion, structural and functional MRI step by step, with live demos that run on a synthetic phantom.</p>
+              <p>A viewer reads your own NIfTI files, fits a diffusion tensor and segments tissue, all in the browser with nothing uploaded. It is built for exploration, not publication: the tensor fit is plain least squares with no artifact correction, and the segmentation is a three-class k-means on intensity. <a href="https://github.com/pearlfranz20/dmriwebsite">Source on GitHub</a>.</p>
+              <ul class="tags" aria-label="Tools"><li>SvelteKit</li><li>TypeScript</li><li>NiiVue</li><li>Web Workers</li></ul>
             </div>
           </li>
         </ul>
