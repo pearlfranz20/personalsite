@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pearl Franz | Data engineer and computational neuroscience tinkerer</title>
+  <meta name="description" content="Pearl Franz is a software consultant and data engineer in Cambridge, MA, with a background in computational neuroscience and biomedical engineering.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#070b14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#eceef2" media="(prefers-color-scheme: light)">
+  <meta property="og:title" content="Pearl Franz">
+  <meta property="og:description" content="Data engineer and computational neuroscience tinkerer.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/atkinson-hyperlegible-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.replace("no-js", "js")</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="top">
+    <a class="mark" href="#top" aria-label="Pearl Franz, back to top">Pearl Franz</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-name">
+      <canvas id="raster" aria-hidden="true"></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <h1 id="hero-name"><span class="line">Pearl</span> <span class="line">Franz</span></h1>
+        <p class="hero-lede">I build data pipelines for government platforms by day and take apart neural recordings in my own time. Trained in neuroscience and biomedical engineering at Carnegie Mellon, now a software consultant and data engineer in Cambridge, MA.</p>
+        <p class="hero-links">
+          <a class="btn" href="#projects">See my projects</a>
+          <a class="btn btn-quiet" href="mailto:pfranz@alumni.cmu.edu">Email me</a>
+        </p>
+      </div>
+      <p class="caption hero-caption"><span class="scalebar" aria-hidden="true"></span><span><span class="fig">Fig. 1</span> Simulated raster, 64 units at three depths. Scale bar 100 ms. <span class="hint">Move your pointer over it to drive the units beneath.</span></span></p>
+    </section>
+
+    <section class="about wrap reveal" id="about" aria-labelledby="about-h">
+      <p class="caption section-mark">About</p>
+      <div class="about-grid">
+        <div class="prose">
+          <h2 id="about-h">Signals, pipelines, and the space between them.</h2>
+          <p>I'm a software consultant and data engineer at Faraday Software, where I've worked remotely since June 2024. Most of my days go into moving public-sector systems onto modern platforms: ETL pipelines, SQL, AWS, and low-code application work in Appian.</p>
+          <p>Before that I studied how brains and bodies produce signals at Carnegie Mellon, first for a BS in Neuroscience and then an MS in Biomedical Engineering. My research touched computational neuroscience, biophotonics and bioinformatics.</p>
+          <p>I still care about that science, so most of my side projects sit where the two meet. They take messy biological data, build careful tooling around it, and report what worked and what didn't, including the negative results.</p>
+        </div>
+        <dl class="stack">
+          <div><dt>Data</dt><dd>Python, SQL, ETL pipelines, dbt, DuckDB, Postgres</dd></div>
+          <div><dt>Cloud</dt><dd>AWS Glue, S3, EC2, Bedrock</dd></div>
+          <div><dt>Machine learning</dt><dd>PyTorch, scikit-learn, NumPy, SciPy</dd></div>
+          <div><dt>Applications</dt><dd>Appian (Certified Associate Developer), FastAPI, Streamlit</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="projects" id="projects" aria-labelledby="projects-h">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="caption section-mark">Projects</p>
+          <h2 id="projects-h">Nine pieces of work, shown with their limits.</h2>
+          <p class="section-intro">Everything here is public on GitHub. Each write-up lists its methods, limits and results, good or bad. The small drawings are generated, not data.</p>
+        </div>
+
+        <h3 class="group-h reveal">Neural data</h3>
+        <ul class="plates">
+          <li class="plate feature reveal">
+            <canvas class="thumb" data-thumb="raster" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 1 / Allen Brain Observatory Neuropixels</p>
+              <h4><a href="https://github.com/pearlfranz20/spikescale">spikescale</a></h4>
+              <p>Asks where in time a population's stimulus information sits. It decodes natural-image identity from mouse visual cortex and thalamus at bin widths from 250 ms down to 5 ms, across 38 area samples in twelve mice. Cortex reads images best at 50 ms bins in 24 of 25 samples, and nothing is gained below 25 ms.</p>
+              <p>It started as a test of a multiscale residual VQ tokenizer for spikes. The tokenizer didn't beat residual k-means by the margin I set as the bar, and the write-up says so.</p>
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>PyTorch</li><li>Neuropixels</li><li>Decoding</li></ul>
+            </div>
+          </li>
+          <li class="plate feature reveal">
+            <canvas class="thumb" data-thumb="manifold" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 2 / Latent dynamics, in progress</p>
+              <h4><a href="https://github.com/pearlfranz20/neural">sparsedyn</a></h4>
+              <p>How many neurons do you need, and how coarse can your bins be, before latent dynamics stop being recoverable? This project treats that as an observability problem with ground truth. So far the Fisher-information prediction matches an oracle smoother within 0.013 R&sup2; at fine bins, and a learned Poisson LDS reaches the oracle with 12 to 96 neurons. Nonlinear and real-data phases are next.</p>
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>State-space models</li><li>Simulation</li></ul>
+            </div>
+          </li>
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="waveforms" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 3 / Spike sorting from scratch</p>
+              <h4><a href="https://github.com/pearlfranz20/spikesort">spikesort</a></h4>
+              <p>The classic two-stage design in readable NumPy and SciPy: detect, cluster and build templates, then explain the raw trace with matching pursuit to recover overlapping spikes. Benchmarked on simulated tetrode recordings where the answer is known, it reaches 0.98 to 0.99 accuracy across noise levels.</p>
+              <ul class="tags" aria-label="Tools"><li>NumPy</li><li>SciPy</li><li>Signal processing</li></ul>
+            </div>
+          </li>
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="eeg" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 4 / EEG motor imagery, in progress</p>
+              <h4><a href="https://github.com/pearlfranz20/eegllm">eegllm</a></h4>
+              <p>Compares EEGNet, a transformer and a hybrid CNN-transformer on four-class motor imagery from the PhysioNet EEG dataset, then has an LLM write an interpretation of the predictions.</p>
+              <ul class="tags" aria-label="Tools"><li>PyTorch</li><li>EEG</li><li>Claude API</li></ul>
+            </div>
+          </li>
+        </ul>
+
+        <h3 class="group-h reveal">Research tooling</h3>
+        <ul class="plates">
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="panels" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 5 / Image forensics</p>
+              <h4><a href="https://github.com/pearlfranz20/dupscope">dupscope</a></h4>
+              <p>Splits figures into panels and flags images that appear twice, even rotated, mirrored, cropped or re-toned, then writes a report for a person to check. On 200 held-out synthetic papers it found 58 of 80 planted reuses and wrongly flagged 1 of 99 clean papers.</p>
+              <ul class="tags" aria-label="Tools"><li>OpenCV</li><li>SIFT</li><li>Benchmarking</li></ul>
+            </div>
+          </li>
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="lake" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 6 / Neuroimaging metadata</p>
+              <h4><a href="https://github.com/pearlfranz20/neurolake">neurolake</a></h4>
+              <p>Pulls BIDS datasets from OpenNeuro, lands the metadata as Parquet and models it with dbt on DuckDB. An audit of 150 random OpenNeuro datasets found that 51% pass every rule and 19% have no participants file.</p>
+              <ul class="tags" aria-label="Tools"><li>dbt</li><li>DuckDB</li><li>Parquet</li><li>BIDS</li></ul>
+            </div>
+          </li>
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="tracts" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 7 / Diffusion MRI, in progress</p>
+              <h4><a href="https://github.com/pearlfranz20/dmriwebsite">dmriwebsite</a></h4>
+              <p>A SvelteKit site describing tractography, connectometry and longitudinal diffusion MRI analyses, with an inquiry form.</p>
+              <ul class="tags" aria-label="Tools"><li>SvelteKit</li><li>TypeScript</li></ul>
+            </div>
+          </li>
+        </ul>
+
+        <h3 class="group-h reveal">Applied machine learning</h3>
+        <ul class="plates">
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="pages" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 8 / Retrieval over PDFs</p>
+              <h4><a href="https://github.com/pearlfranz20/ragpdfquery">ragpdfquery</a></h4>
+              <p>A production-shaped retrieval system with citations, multilingual support and hallucination checks. A LangGraph agent retrieves, grades, generates and retries with more context when an answer isn't grounded. Runs on Bedrock or OpenAI, with an admin dashboard for ingestion and evaluation runs.</p>
+              <ul class="tags" aria-label="Tools"><li>LangGraph</li><li>pgvector</li><li>FastAPI</li><li>DeepEval</li></ul>
+            </div>
+          </li>
+          <li class="plate reveal">
+            <canvas class="thumb" data-thumb="glyphs" aria-hidden="true"></canvas>
+            <div class="plate-body">
+              <p class="caption">Pl. 9 / Vision in bad light</p>
+              <h4><a href="https://github.com/pearlfranz20/lowlightlowresocr">lowlightlowresocr</a></h4>
+              <p>A fast, coarse pathway and a slow, detailed one, fused by a learned gate, for signs and text in bad light. On a task built so neither pathway can solve it alone, the fused model reaches 79.6% against about 51% for either pathway. On other benchmarks the gate mostly leaned on one pathway, which the README reports plainly.</p>
+              <ul class="tags" aria-label="Tools"><li>PyTorch</li><li>GTSRB</li><li>OCR</li></ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="experience wrap" id="experience" aria-labelledby="exp-h">
+      <div class="reveal">
+        <p class="caption section-mark">Experience</p>
+        <h2 id="exp-h">Where I've worked.</h2>
+      </div>
+      <ol class="timeline">
+        <li class="reveal">
+          <p class="when caption">2024 to now</p>
+          <div>
+            <h3>Software consultant and data engineer, Faraday Software</h3>
+            <p class="where">Remote</p>
+            <ul class="roles">
+              <li><strong>Mississippi state government.</strong> Platform modernization project, current.</li>
+              <li><strong>U.S. Department of Labor.</strong> Embedded on a federal project team, earlier engagement.</li>
+            </ul>
+            <p>Work across ETL pipelines, SQL, AWS (Glue, S3, EC2) and Appian application development.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <p class="when caption">Before 2024</p>
+          <div>
+            <h3>Research, Carnegie Mellon University</h3>
+            <p>Projects in computational neuroscience, biophotonics and bioinformatics during my undergraduate and graduate degrees.</p>
+          </div>
+        </li>
+      </ol>
+
+      <h2 id="edu-h" class="sub-h2 reveal">Education and certification</h2>
+      <ul class="edu" aria-labelledby="edu-h">
+        <li class="reveal"><h3>MS, Biomedical Engineering</h3><p>Carnegie Mellon University, 2024</p></li>
+        <li class="reveal"><h3>BS, Neuroscience</h3><p>Carnegie Mellon University, 2023</p></li>
+        <li class="reveal"><h3>Appian Certified Associate Developer</h3><p>Appian</p></li>
+      </ul>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap reveal">
+        <p class="caption section-mark">Contact</p>
+        <h2 id="contact-h">Say hello.</h2>
+        <p class="contact-lede">I'm happy to talk about data engineering, neuroscience tooling, or anything on this page.</p>
+        <ul class="contact-links">
+          <li><a href="mailto:pfranz@alumni.cmu.edu">pfranz@alumni.cmu.edu</a></li>
+          <li><a href="https://www.linkedin.com/in/pearl-franz">LinkedIn</a></li>
+          <li><a href="https://github.com/pearlfranz20">GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot wrap">
+    <p class="caption">Pearl Franz, Cambridge, MA. Every drawing on this page is simulated, not recorded.</p>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
