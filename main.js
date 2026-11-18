@@ -269,7 +269,7 @@
       const g = ctx.createLinearGradient(stim - 40, 0, stim + 60, 0);
       g.addColorStop(0, `rgba(${C.warm},0)`); g.addColorStop(0.5, `rgba(${C.warm},0.14)`); g.addColorStop(1, `rgba(${C.warm},0)`);
       ctx.fillStyle = g; ctx.fillRect(stim - 40, 0, 100, bot + 4);
-      const drift = (t * 0.02) % 1;
+      const drift = t * 0.02; // px, a slow continuous scroll (20 px/s)
       for (let i = 0; i < rows; i++) {
         const y = top + (i + 0.5) * (bot - top) / rows;
         const resp = r() < 0.6;
@@ -278,7 +278,7 @@
           const hot = resp && x > stim && x < stim + 50;
           ctx.strokeStyle = hot ? `rgba(${C.warm},0.95)` : `rgba(${C.cool},0.55)`;
           ctx.lineWidth = hot ? 1.6 : 1;
-          const xx = (x - drift * 30 + w) % w;
+          const xx = hot ? x : (((x - drift) % w) + w) % w; // the stimulus-locked burst stays put
           ctx.beginPath(); ctx.moveTo(xx, y - 3); ctx.lineTo(xx, y + 3); ctx.stroke();
           x += hot ? 4 + r() * 6 : 10 + r() * 60;
         }
@@ -289,7 +289,7 @@
         const y = h * 0.72 + k * (h * 0.045);
         const bw = (w * 0.9) / n;
         for (let j = 0; j < n; j++) {
-          const v = 0.25 + 0.6 * Math.abs(Math.sin(j * 1.7 + k + t * 0.002));
+          const v = 0.25 + 0.6 * Math.abs(Math.sin(j * 1.7 + k + t * 0.0013));
           ctx.fillStyle = `rgba(${k === 2 ? C.warm : C.cool},${(k === 2 ? 0.75 : 0.28) * v})`;
           ctx.fillRect(w * 0.05 + j * bw + 0.5, y, Math.max(1, bw - 1.5), h * 0.03);
         }
